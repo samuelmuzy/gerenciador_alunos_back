@@ -19,4 +19,5 @@ model usuarios{
   nome String
   email String @unique
   senha String
+  role String @default("USER")
 }

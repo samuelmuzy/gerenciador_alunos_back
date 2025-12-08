@@ -7,6 +7,7 @@ import { jwtConstants } from './constants/jwtConstants';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth.guard';
 import { ConfigModule } from '@nestjs/config';
+import { RolesGuard } from './Roles.guard';
 console.log(jwtConstants.secret)
 
 @Module({
@@ -24,6 +25,10 @@ console.log(jwtConstants.secret)
       provide: APP_GUARD,
       useClass: AuthGuard,
     },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    }
   ],
 
 })

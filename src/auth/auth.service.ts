@@ -6,6 +6,7 @@ import { Public } from './SkipAuth.decorator';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { comparePassword, hashPassword } from 'src/common/utils/hash';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from './enums/RoleEnum';
 
 @Injectable()
 export class AuthService {
@@ -25,9 +26,9 @@ export class AuthService {
         data.senha = await hashedPassword;
 
         await this.prismaService.usuarios.create({ data });
-        const payload = {nome:data.nome,email:data.email}
+        const payload = {nome:data.nome,email:data.email,roles: [Role.ADMIN] }
 
-        const accessToken = await this.jwtService.signAsync({payload})
+        const accessToken = await this.jwtService.signAsync(payload)
         return {token: accessToken};
     }
 
@@ -44,7 +45,7 @@ export class AuthService {
             throw new UnauthorizedException("Erro ao efetuar o login");
         }
  
-        const payload = {nome:verifyUserExist.nome,email:data.email}
+        const payload = {nome:verifyUserExist.nome,email:data.email,role:verifyUserExist.role}
 
         const accessToken = await this.jwtService.signAsync({payload})
         return {token: accessToken};
