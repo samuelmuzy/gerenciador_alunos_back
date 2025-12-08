@@ -18,7 +18,57 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
- * Model usuarios
+ * Model Usuario
  * 
  */
-export type usuarios = Prisma.usuariosModel
+export type Usuario = Prisma.UsuarioModel
+/**
+ * Model Aluno
+ * 
+ */
+export type Aluno = Prisma.AlunoModel
+/**
+ * Model Professor
+ * 
+ */
+export type Professor = Prisma.ProfessorModel
+/**
+ * Model Periodo
+ * 
+ */
+export type Periodo = Prisma.PeriodoModel
+/**
+ * Model Turma
+ * 
+ */
+export type Turma = Prisma.TurmaModel
+/**
+ * Model ProfessoresTurmas
+ * 
+ */
+export type ProfessoresTurmas = Prisma.ProfessoresTurmasModel
+/**
+ * Model Materia
+ * 
+ */
+export type Materia = Prisma.MateriaModel
+/**
+ * Model ProfessoresMateria
+ * 
+ */
+export type ProfessoresMateria = Prisma.ProfessoresMateriaModel
+/**
+ * Model Etapa
+ * 
+ */
+export type Etapa = Prisma.EtapaModel
+/**
+ * Model Prova
+ * 
+ */
+export type Prova = Prisma.ProvaModel
+/**
+ * Model Trabalho
+ * 
+ */
+export type Trabalho = Prisma.TrabalhoModel

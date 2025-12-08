@@ -15,7 +15,7 @@ export class AuthService {
 
 
     public async singUp(data: SingUpDTO):Promise<object> {
-        const verifyUserAlreadExist = await this.prismaService.usuarios.findUnique({ where: { email: data.email } })
+        const verifyUserAlreadExist = await this.prismaService.usuario.findUnique({ where: { email: data.email } })
         
         if(verifyUserAlreadExist){
             throw new UnauthorizedException("Usuário já existe");
@@ -25,7 +25,7 @@ export class AuthService {
 
         data.senha = await hashedPassword;
 
-        await this.prismaService.usuarios.create({ data });
+        await this.prismaService.usuario.create({ data });
         const payload = {nome:data.nome,email:data.email,roles: [Role.ADMIN] }
 
         const accessToken = await this.jwtService.signAsync(payload)
@@ -33,7 +33,7 @@ export class AuthService {
     }
 
     public async singIn(data: SingInDTO) {
-        const verifyUserExist = await this.prismaService.usuarios.findUnique({ where: { email: data.email } })
+        const verifyUserExist = await this.prismaService.usuario.findUnique({ where: { email: data.email } })
         
         if(!verifyUserExist){
             throw new UnauthorizedException("Erro ao efetuar o login");

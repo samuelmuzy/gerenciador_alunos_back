@@ -51,7 +51,17 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  usuarios: 'usuarios'
+  Usuario: 'Usuario',
+  Aluno: 'Aluno',
+  Professor: 'Professor',
+  Periodo: 'Periodo',
+  Turma: 'Turma',
+  ProfessoresTurmas: 'ProfessoresTurmas',
+  Materia: 'Materia',
+  ProfessoresMateria: 'ProfessoresMateria',
+  Etapa: 'Etapa',
+  Prova: 'Prova',
+  Trabalho: 'Trabalho'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,15 +80,117 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UsuariosScalarFieldEnum = {
+export const UsuarioScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   email: 'email',
   senha: 'senha',
-  role: 'role'
+  role: 'role',
+  cpf: 'cpf'
 } as const
 
-export type UsuariosScalarFieldEnum = (typeof UsuariosScalarFieldEnum)[keyof typeof UsuariosScalarFieldEnum]
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const AlunoScalarFieldEnum = {
+  id: 'id',
+  matricula: 'matricula',
+  id_usuario: 'id_usuario',
+  id_turma: 'id_turma'
+} as const
+
+export type AlunoScalarFieldEnum = (typeof AlunoScalarFieldEnum)[keyof typeof AlunoScalarFieldEnum]
+
+
+export const ProfessorScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  graduacao: 'graduacao',
+  id_usuario: 'id_usuario'
+} as const
+
+export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof typeof ProfessorScalarFieldEnum]
+
+
+export const PeriodoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  descricao: 'descricao'
+} as const
+
+export type PeriodoScalarFieldEnum = (typeof PeriodoScalarFieldEnum)[keyof typeof PeriodoScalarFieldEnum]
+
+
+export const TurmaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  id_periodo: 'id_periodo'
+} as const
+
+export type TurmaScalarFieldEnum = (typeof TurmaScalarFieldEnum)[keyof typeof TurmaScalarFieldEnum]
+
+
+export const ProfessoresTurmasScalarFieldEnum = {
+  professores_id: 'professores_id',
+  turmas_id: 'turmas_id'
+} as const
+
+export type ProfessoresTurmasScalarFieldEnum = (typeof ProfessoresTurmasScalarFieldEnum)[keyof typeof ProfessoresTurmasScalarFieldEnum]
+
+
+export const MateriaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  descricao: 'descricao',
+  id_periodo: 'id_periodo'
+} as const
+
+export type MateriaScalarFieldEnum = (typeof MateriaScalarFieldEnum)[keyof typeof MateriaScalarFieldEnum]
+
+
+export const ProfessoresMateriaScalarFieldEnum = {
+  professores_id: 'professores_id',
+  materia_id: 'materia_id'
+} as const
+
+export type ProfessoresMateriaScalarFieldEnum = (typeof ProfessoresMateriaScalarFieldEnum)[keyof typeof ProfessoresMateriaScalarFieldEnum]
+
+
+export const EtapaScalarFieldEnum = {
+  id: 'id',
+  data_inicio: 'data_inicio',
+  data_fim: 'data_fim',
+  nota_etapa: 'nota_etapa',
+  id_materia: 'id_materia'
+} as const
+
+export type EtapaScalarFieldEnum = (typeof EtapaScalarFieldEnum)[keyof typeof EtapaScalarFieldEnum]
+
+
+export const ProvaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  nota: 'nota',
+  valor: 'valor',
+  id_etapa: 'id_etapa'
+} as const
+
+export type ProvaScalarFieldEnum = (typeof ProvaScalarFieldEnum)[keyof typeof ProvaScalarFieldEnum]
+
+
+export const TrabalhoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  url: 'url',
+  nota: 'nota',
+  tipo: 'tipo',
+  valor: 'valor',
+  data_inicio: 'data_inicio',
+  data_fim: 'data_fim',
+  id_etapa: 'id_etapa'
+} as const
+
+export type TrabalhoScalarFieldEnum = (typeof TrabalhoScalarFieldEnum)[keyof typeof TrabalhoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -95,4 +207,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

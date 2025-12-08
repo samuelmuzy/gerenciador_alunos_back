@@ -8,5 +8,15 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/usuarios.js'
+export type * from './models/Usuario.js'
+export type * from './models/Aluno.js'
+export type * from './models/Professor.js'
+export type * from './models/Periodo.js'
+export type * from './models/Turma.js'
+export type * from './models/ProfessoresTurmas.js'
+export type * from './models/Materia.js'
+export type * from './models/ProfessoresMateria.js'
+export type * from './models/Etapa.js'
+export type * from './models/Prova.js'
+export type * from './models/Trabalho.js'
 export type * from './commonInputTypes.js'

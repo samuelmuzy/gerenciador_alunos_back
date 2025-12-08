@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel usuarios {\n  id    String @id @default(uuid())\n  nome  String\n  email String @unique\n  senha String\n  role  String @default(\"USER\")\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// 1. Entidade: usuarios\nmodel Usuario {\n  id    String  @id @default(uuid())\n  nome  String\n  email String  @unique\n  senha String\n  role  String  @default(\"USER\")\n  cpf   String? @unique\n\n  aluno     Aluno?\n  professor Professor?\n\n  @@map(\"usuarios\")\n}\n\n// 2. Entidade: alunos\nmodel Aluno {\n  id        String @id @default(uuid())\n  matricula String @unique\n\n  // Relacionamentos\n  id_usuario String  @unique\n  usuario    Usuario @relation(fields: [id_usuario], references: [id])\n\n  id_turma String\n  turma    Turma  @relation(fields: [id_turma], references: [id])\n\n  @@map(\"alunos\")\n}\n\n// 3. Entidade: professores\nmodel Professor {\n  id        String @id @default(uuid())\n  tipo      String\n  graduacao String\n\n  // Relacionamentos\n  id_usuario String  @unique\n  usuario    Usuario @relation(fields: [id_usuario], references: [id])\n\n  turmas   ProfessoresTurmas[]\n  materias ProfessoresMateria[]\n\n  @@map(\"professores\")\n}\n\n// 4. Entidade: periodo\nmodel Periodo {\n  id        String @id @default(uuid())\n  nome      String\n  descricao String\n\n  // Relacionamentos\n  turmas   Turma[]\n  materias Materia[]\n\n  @@map(\"periodo\")\n}\n\n// 5. Entidade: Turmas\nmodel Turma {\n  id   String @id @default(uuid())\n  nome String\n\n  // Relacionamentos\n  id_periodo String\n  periodo    Periodo @relation(fields: [id_periodo], references: [id])\n\n  alunos      Aluno[]\n  professores ProfessoresTurmas[]\n\n  @@map(\"turmas\")\n}\n\n// 6. Entidade: professores_Turmas (Tabela de ligação N:M)\nmodel ProfessoresTurmas {\n  professores_id String\n  professor      Professor @relation(fields: [professores_id], references: [id])\n\n  turmas_id String\n  turma     Turma  @relation(fields: [turmas_id], references: [id])\n\n  @@id([professores_id, turmas_id])\n  @@map(\"professores_Turmas\")\n}\n\n// 7. Entidade: materia\nmodel Materia {\n  id        String @id @default(uuid())\n  nome      String\n  descricao String\n\n  // Relacionamentos\n  id_periodo String\n  periodo    Periodo @relation(fields: [id_periodo], references: [id])\n\n  etapas      Etapa[]\n  professores ProfessoresMateria[]\n\n  @@map(\"materia\")\n}\n\n// 8. Entidade: professores_materia (Tabela de ligação N:M)\nmodel ProfessoresMateria {\n  professores_id String\n  professor      Professor @relation(fields: [professores_id], references: [id])\n\n  materia_id String\n  materia    Materia @relation(fields: [materia_id], references: [id])\n\n  @@id([professores_id, materia_id])\n  @@map(\"professores_materia\")\n}\n\n// 9. Entidade: etapa\nmodel Etapa {\n  id          String   @id @default(uuid())\n  data_inicio DateTime @map(\"data_Incicio\")\n  data_fim    DateTime @map(\"data_fim\")\n  nota_etapa  Float    @map(\"nota_etapa\")\n\n  // Relacionamentos\n  id_materia String\n  materia    Materia @relation(fields: [id_materia], references: [id])\n\n  provas    Prova[]\n  trabalhos Trabalho[]\n\n  @@map(\"etapa\")\n}\n\n// 10. Entidade: provas\nmodel Prova {\n  id    String @id @default(uuid())\n  nome  String\n  nota  Float\n  valor Float\n\n  // Relacionamentos\n  id_etapa String @map(\"id_etapa\")\n  etapa    Etapa  @relation(fields: [id_etapa], references: [id])\n\n  @@map(\"provas\")\n}\n\n// 11. Entidade: trabalho\nmodel Trabalho {\n  id          String   @id @default(uuid())\n  nome        String\n  url         String\n  nota        Float\n  tipo        String\n  valor       Float // O diagrama diz 'valor text', então mantemos String\n  data_inicio DateTime @map(\"data_Inicio\")\n  data_fim    DateTime @map(\"data_fim\")\n\n  // Relacionamentos\n  id_etapa String @map(\"id_etapa\")\n  etapa    Etapa  @relation(fields: [id_etapa], references: [id])\n\n  @@map(\"trabalho\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"usuarios\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"senha\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Usuario\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"senha\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cpf\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"aluno\",\"kind\":\"object\",\"type\":\"Aluno\",\"relationName\":\"AlunoToUsuario\"},{\"name\":\"professor\",\"kind\":\"object\",\"type\":\"Professor\",\"relationName\":\"ProfessorToUsuario\"}],\"dbName\":\"usuarios\"},\"Aluno\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"matricula\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_usuario\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"usuario\",\"kind\":\"object\",\"type\":\"Usuario\",\"relationName\":\"AlunoToUsuario\"},{\"name\":\"id_turma\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"turma\",\"kind\":\"object\",\"type\":\"Turma\",\"relationName\":\"AlunoToTurma\"}],\"dbName\":\"alunos\"},\"Professor\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"graduacao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_usuario\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"usuario\",\"kind\":\"object\",\"type\":\"Usuario\",\"relationName\":\"ProfessorToUsuario\"},{\"name\":\"turmas\",\"kind\":\"object\",\"type\":\"ProfessoresTurmas\",\"relationName\":\"ProfessorToProfessoresTurmas\"},{\"name\":\"materias\",\"kind\":\"object\",\"type\":\"ProfessoresMateria\",\"relationName\":\"ProfessorToProfessoresMateria\"}],\"dbName\":\"professores\"},\"Periodo\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descricao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"turmas\",\"kind\":\"object\",\"type\":\"Turma\",\"relationName\":\"PeriodoToTurma\"},{\"name\":\"materias\",\"kind\":\"object\",\"type\":\"Materia\",\"relationName\":\"MateriaToPeriodo\"}],\"dbName\":\"periodo\"},\"Turma\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_periodo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"periodo\",\"kind\":\"object\",\"type\":\"Periodo\",\"relationName\":\"PeriodoToTurma\"},{\"name\":\"alunos\",\"kind\":\"object\",\"type\":\"Aluno\",\"relationName\":\"AlunoToTurma\"},{\"name\":\"professores\",\"kind\":\"object\",\"type\":\"ProfessoresTurmas\",\"relationName\":\"ProfessoresTurmasToTurma\"}],\"dbName\":\"turmas\"},\"ProfessoresTurmas\":{\"fields\":[{\"name\":\"professores_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"professor\",\"kind\":\"object\",\"type\":\"Professor\",\"relationName\":\"ProfessorToProfessoresTurmas\"},{\"name\":\"turmas_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"turma\",\"kind\":\"object\",\"type\":\"Turma\",\"relationName\":\"ProfessoresTurmasToTurma\"}],\"dbName\":\"professores_Turmas\"},\"Materia\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descricao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_periodo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"periodo\",\"kind\":\"object\",\"type\":\"Periodo\",\"relationName\":\"MateriaToPeriodo\"},{\"name\":\"etapas\",\"kind\":\"object\",\"type\":\"Etapa\",\"relationName\":\"EtapaToMateria\"},{\"name\":\"professores\",\"kind\":\"object\",\"type\":\"ProfessoresMateria\",\"relationName\":\"MateriaToProfessoresMateria\"}],\"dbName\":\"materia\"},\"ProfessoresMateria\":{\"fields\":[{\"name\":\"professores_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"professor\",\"kind\":\"object\",\"type\":\"Professor\",\"relationName\":\"ProfessorToProfessoresMateria\"},{\"name\":\"materia_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"materia\",\"kind\":\"object\",\"type\":\"Materia\",\"relationName\":\"MateriaToProfessoresMateria\"}],\"dbName\":\"professores_materia\"},\"Etapa\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"data_inicio\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"data_Incicio\"},{\"name\":\"data_fim\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"data_fim\"},{\"name\":\"nota_etapa\",\"kind\":\"scalar\",\"type\":\"Float\",\"dbName\":\"nota_etapa\"},{\"name\":\"id_materia\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"materia\",\"kind\":\"object\",\"type\":\"Materia\",\"relationName\":\"EtapaToMateria\"},{\"name\":\"provas\",\"kind\":\"object\",\"type\":\"Prova\",\"relationName\":\"EtapaToProva\"},{\"name\":\"trabalhos\",\"kind\":\"object\",\"type\":\"Trabalho\",\"relationName\":\"EtapaToTrabalho\"}],\"dbName\":\"etapa\"},\"Prova\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nota\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"valor\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"id_etapa\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"id_etapa\"},{\"name\":\"etapa\",\"kind\":\"object\",\"type\":\"Etapa\",\"relationName\":\"EtapaToProva\"}],\"dbName\":\"provas\"},\"Trabalho\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nota\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valor\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"data_inicio\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"data_Inicio\"},{\"name\":\"data_fim\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"data_fim\"},{\"name\":\"id_etapa\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"id_etapa\"},{\"name\":\"etapa\",\"kind\":\"object\",\"type\":\"Etapa\",\"relationName\":\"EtapaToTrabalho\"}],\"dbName\":\"trabalho\"}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -59,7 +59,7 @@ export interface PrismaClientConstructor {
    * ```
    * const prisma = new PrismaClient()
    * // Fetch zero or more Usuarios
-   * const usuarios = await prisma.usuarios.findMany()
+   * const usuarios = await prisma.usuario.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -81,7 +81,7 @@ export interface PrismaClientConstructor {
  * ```
  * const prisma = new PrismaClient()
  * // Fetch zero or more Usuarios
- * const usuarios = await prisma.usuarios.findMany()
+ * const usuarios = await prisma.usuario.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,14 +175,114 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.usuarios`: Exposes CRUD operations for the **usuarios** model.
+   * `prisma.usuario`: Exposes CRUD operations for the **Usuario** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Usuarios
-    * const usuarios = await prisma.usuarios.findMany()
+    * const usuarios = await prisma.usuario.findMany()
     * ```
     */
-  get usuarios(): Prisma.usuariosDelegate<ExtArgs, { omit: OmitOpts }>;
+  get usuario(): Prisma.UsuarioDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.aluno`: Exposes CRUD operations for the **Aluno** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Alunos
+    * const alunos = await prisma.aluno.findMany()
+    * ```
+    */
+  get aluno(): Prisma.AlunoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.professor`: Exposes CRUD operations for the **Professor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Professors
+    * const professors = await prisma.professor.findMany()
+    * ```
+    */
+  get professor(): Prisma.ProfessorDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.periodo`: Exposes CRUD operations for the **Periodo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Periodos
+    * const periodos = await prisma.periodo.findMany()
+    * ```
+    */
+  get periodo(): Prisma.PeriodoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.turma`: Exposes CRUD operations for the **Turma** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Turmas
+    * const turmas = await prisma.turma.findMany()
+    * ```
+    */
+  get turma(): Prisma.TurmaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.professoresTurmas`: Exposes CRUD operations for the **ProfessoresTurmas** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProfessoresTurmas
+    * const professoresTurmas = await prisma.professoresTurmas.findMany()
+    * ```
+    */
+  get professoresTurmas(): Prisma.ProfessoresTurmasDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.materia`: Exposes CRUD operations for the **Materia** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Materias
+    * const materias = await prisma.materia.findMany()
+    * ```
+    */
+  get materia(): Prisma.MateriaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.professoresMateria`: Exposes CRUD operations for the **ProfessoresMateria** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProfessoresMaterias
+    * const professoresMaterias = await prisma.professoresMateria.findMany()
+    * ```
+    */
+  get professoresMateria(): Prisma.ProfessoresMateriaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.etapa`: Exposes CRUD operations for the **Etapa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Etapas
+    * const etapas = await prisma.etapa.findMany()
+    * ```
+    */
+  get etapa(): Prisma.EtapaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.prova`: Exposes CRUD operations for the **Prova** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Prova
+    * const prova = await prisma.prova.findMany()
+    * ```
+    */
+  get prova(): Prisma.ProvaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.trabalho`: Exposes CRUD operations for the **Trabalho** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Trabalhos
+    * const trabalhos = await prisma.trabalho.findMany()
+    * ```
+    */
+  get trabalho(): Prisma.TrabalhoDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

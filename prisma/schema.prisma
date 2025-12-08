@@ -14,10 +14,165 @@ datasource db {
   provider = "postgresql"
 }
 
-model usuarios{
-  id String @id @default(uuid())
-  nome String
-  email String @unique
-  senha String
-  role String @default("USER")
+// 1. Entidade: usuarios
+model Usuario {
+  id        String      @id @default(uuid())
+  nome      String
+  email     String      @unique
+  senha     String
+  role      String      @default("USER")
+  cpf       String?     @unique 
+  
+  aluno     Aluno?
+  professor Professor?
+
+  @@map("usuarios")
+}
+
+// 2. Entidade: alunos
+model Aluno {
+  id          String  @id @default(uuid())
+  matricula   String  @unique
+  
+  // Relacionamentos
+  id_usuario  String  @unique
+  usuario     Usuario @relation(fields: [id_usuario], references: [id])
+  
+  id_turma    String
+  turma       Turma   @relation(fields: [id_turma], references: [id])
+
+  @@map("alunos")
+}
+
+// 3. Entidade: professores
+model Professor {
+  id          String  @id @default(uuid())
+  tipo        String
+  graduacao   String
+  
+  // Relacionamentos
+  id_usuario  String  @unique
+  usuario     Usuario @relation(fields: [id_usuario], references: [id])
+  
+  turmas      ProfessoresTurmas[]
+  materias    ProfessoresMateria[]
+
+  @@map("professores")
+}
+
+// 4. Entidade: periodo
+model Periodo {
+  id          String  @id @default(uuid())
+  nome        String
+  descricao   String
+  
+  // Relacionamentos
+  turmas      Turma[]
+  materias    Materia[]
+
+  @@map("periodo")
+}
+
+// 5. Entidade: Turmas
+model Turma {
+  id          String  @id @default(uuid())
+  nome        String
+  
+  // Relacionamentos
+  id_periodo  String
+  periodo     Periodo @relation(fields: [id_periodo], references: [id])
+  
+  alunos      Aluno[]
+  professores ProfessoresTurmas[]
+
+  @@map("turmas")
+}
+
+// 6. Entidade: professores_Turmas (Tabela de ligação N:M)
+model ProfessoresTurmas {
+  professores_id String
+  professor      Professor @relation(fields: [professores_id], references: [id])
+  
+  turmas_id      String
+  turma          Turma     @relation(fields: [turmas_id], references: [id])
+
+  @@id([professores_id, turmas_id])
+  @@map("professores_Turmas")
+}
+
+// 7. Entidade: materia
+model Materia {
+  id          String  @id @default(uuid())
+  nome        String
+  descricao   String
+  
+  // Relacionamentos
+  id_periodo  String
+  periodo     Periodo @relation(fields: [id_periodo], references: [id])
+  
+  etapas      Etapa[]
+  professores ProfessoresMateria[]
+
+  @@map("materia")
+}
+
+// 8. Entidade: professores_materia (Tabela de ligação N:M)
+model ProfessoresMateria {
+  professores_id String
+  professor      Professor @relation(fields: [professores_id], references: [id])
+  
+  materia_id     String
+  materia        Materia   @relation(fields: [materia_id], references: [id])
+
+  @@id([professores_id, materia_id])
+  @@map("professores_materia")
+}
+
+// 9. Entidade: etapa
+model Etapa {
+  id              String    @id @default(uuid())
+  data_inicio     DateTime  @map("data_Incicio")
+  data_fim        DateTime  @map("data_fim")
+  nota_etapa      Float     @map("nota_etapa")
+  
+  // Relacionamentos
+  id_materia      String
+  materia         Materia   @relation(fields: [id_materia], references: [id])
+  
+  provas          Prova[]
+  trabalhos       Trabalho[]
+
+  @@map("etapa")
+}
+
+// 10. Entidade: provas
+model Prova {
+  id          String  @id @default(uuid())
+  nome        String
+  nota        Float
+  valor       Float
+  
+  // Relacionamentos
+  id_etapa    String  @map("id_etapa")
+  etapa       Etapa   @relation(fields: [id_etapa], references: [id])
+
+  @@map("provas")
+}
+
+// 11. Entidade: trabalho
+model Trabalho {
+  id          String    @id @default(uuid())
+  nome        String
+  url         String
+  nota        Float
+  tipo        String
+  valor       Float // O diagrama diz 'valor text', então mantemos String
+  data_inicio DateTime  @map("data_Inicio")
+  data_fim    DateTime  @map("data_fim")
+  
+  // Relacionamentos
+  id_etapa    String  @map("id_etapa")
+  etapa       Etapa   @relation(fields: [id_etapa], references: [id])
+
+  @@map("trabalho")
 }
