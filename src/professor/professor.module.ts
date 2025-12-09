@@ -15,8 +15,8 @@ import { RolesGuard } from 'src/auth/guards/Roles.guard';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    }
+    },
   ],
-  controllers: [ProfessorController]
+  controllers: [ProfessorController],
 })
 export class ProfessorModule {}

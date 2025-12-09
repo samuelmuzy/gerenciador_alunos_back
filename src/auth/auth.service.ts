@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import type { SingInDTO, SingUpDTO } from './dtos/authDTO';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { comparePassword, hashPassword } from 'src/common/utils/hash';
@@ -22,7 +22,23 @@ export class AuthService {
 
         data.senha = await hashedPassword;
 
-        await this.prismaService.usuario.create({ data });
+        await this.prismaService.usuario.create({ 
+            data: {
+                nome:data.nome,
+                email:data.email,
+                senha: hashedPassword,
+                cpf:data.cpf,
+                role: Role.TEACHER,
+                aluno: {
+                  create: {
+                    matricula:data.matricula
+                  },
+                },
+              },
+              include:{
+                aluno:true
+              }
+         });
         const payload = {nome:data.nome,email:data.email,roles: [Role.ADMIN] }
 
         const accessToken = await this.jwtService.signAsync(payload)
@@ -34,6 +50,29 @@ export class AuthService {
         
         if(!verifyUserExist){
             throw new UnauthorizedException("Erro ao efetuar o login");
+        }
+
+        const hashedPassword = comparePassword(data.senha,verifyUserExist.senha);
+
+        if(!hashedPassword){
+            throw new UnauthorizedException("Erro ao efetuar o login");
+        }
+ 
+        const payload = {nome:verifyUserExist.nome,email:data.email,role:verifyUserExist.role}
+
+        const accessToken = await this.jwtService.signAsync(payload)
+        return {token: accessToken};
+    }
+
+    public async singInProfessor(data: SingInDTO) {
+        const verifyUserExist = await this.prismaService.usuario.findUnique({ where: { email: data.email } })
+        
+        if(!verifyUserExist){
+            throw new UnauthorizedException("Erro ao efetuar o login");
+        }
+
+        if(verifyUserExist.role != Role.TEACHER){
+            throw new ForbiddenException("Não autorizado")
         }
 
         const hashedPassword = comparePassword(data.senha,verifyUserExist.senha);

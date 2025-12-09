@@ -18,4 +18,10 @@ export class AuthController {
     async singIn(@Body() body:SingInDTO){
         return this.authService.singIn(body);
     }
+
+    @Public()
+    @Post('singin-professor')
+    async singInProfessor(@Body() body:SingInDTO){
+        return this.authService.singInProfessor(body)
+    }
 }

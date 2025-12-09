@@ -11,6 +11,9 @@ export class SingUpDTO{
 
     @IsNotEmpty()
     senha:string;
+    
+    @IsNotEmpty()
+    matricula:string;
 }
 
 export class SingInDTO{ 
