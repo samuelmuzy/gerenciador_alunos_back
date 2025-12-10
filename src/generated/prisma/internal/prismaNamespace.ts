@@ -1452,7 +1452,8 @@ export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof t
 export const PeriodoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
-  descricao: 'descricao'
+  descricao: 'descricao',
+  nota_corte: 'nota_corte'
 } as const
 
 export type PeriodoScalarFieldEnum = (typeof PeriodoScalarFieldEnum)[keyof typeof PeriodoScalarFieldEnum]
@@ -1497,9 +1498,8 @@ export const EtapaScalarFieldEnum = {
   id: 'id',
   data_inicio: 'data_inicio',
   data_fim: 'data_fim',
-  nota_etapa: 'nota_etapa',
-  id_periodo: 'id_periodo',
-  materiaId: 'materiaId'
+  nota_maxima_etapa: 'nota_maxima_etapa',
+  id_periodo: 'id_periodo'
 } as const
 
 export type EtapaScalarFieldEnum = (typeof EtapaScalarFieldEnum)[keyof typeof EtapaScalarFieldEnum]
@@ -1595,20 +1595,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1619,6 +1605,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 

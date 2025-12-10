@@ -4,15 +4,20 @@ import { ConfigModule } from '@nestjs/config';
 import { ProfessorModule } from './professor/professor.module';
 import { WorkService } from './work/work.service';
 import { WorkModule } from './work/work.module';
+import { StepModule } from './step/step.module';
+import { PeriodusService } from './periodus/periodus.service';
+import { PeriodusModule } from './periodus/periodus.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal:true}),
     AuthModule,
     ProfessorModule,
-    WorkModule
+    WorkModule,
+    StepModule,
+    PeriodusModule
   ],
   controllers: [],
-  providers: [WorkService],
+  providers: [WorkService, PeriodusService],
 })
 export class AppModule { }

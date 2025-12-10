@@ -20,46 +20,70 @@ export type PeriodoModel = runtime.Types.Result.DefaultSelection<Prisma.$Periodo
 
 export type AggregatePeriodo = {
   _count: PeriodoCountAggregateOutputType | null
+  _avg: PeriodoAvgAggregateOutputType | null
+  _sum: PeriodoSumAggregateOutputType | null
   _min: PeriodoMinAggregateOutputType | null
   _max: PeriodoMaxAggregateOutputType | null
+}
+
+export type PeriodoAvgAggregateOutputType = {
+  nota_corte: number | null
+}
+
+export type PeriodoSumAggregateOutputType = {
+  nota_corte: number | null
 }
 
 export type PeriodoMinAggregateOutputType = {
   id: string | null
   nome: string | null
   descricao: string | null
+  nota_corte: number | null
 }
 
 export type PeriodoMaxAggregateOutputType = {
   id: string | null
   nome: string | null
   descricao: string | null
+  nota_corte: number | null
 }
 
 export type PeriodoCountAggregateOutputType = {
   id: number
   nome: number
   descricao: number
+  nota_corte: number
   _all: number
 }
 
+
+export type PeriodoAvgAggregateInputType = {
+  nota_corte?: true
+}
+
+export type PeriodoSumAggregateInputType = {
+  nota_corte?: true
+}
 
 export type PeriodoMinAggregateInputType = {
   id?: true
   nome?: true
   descricao?: true
+  nota_corte?: true
 }
 
 export type PeriodoMaxAggregateInputType = {
   id?: true
   nome?: true
   descricao?: true
+  nota_corte?: true
 }
 
 export type PeriodoCountAggregateInputType = {
   id?: true
   nome?: true
   descricao?: true
+  nota_corte?: true
   _all?: true
 }
 
@@ -101,6 +125,18 @@ export type PeriodoAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: PeriodoAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: PeriodoSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: PeriodoMinAggregateInputType
@@ -131,6 +167,8 @@ export type PeriodoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: PeriodoCountAggregateInputType | true
+  _avg?: PeriodoAvgAggregateInputType
+  _sum?: PeriodoSumAggregateInputType
   _min?: PeriodoMinAggregateInputType
   _max?: PeriodoMaxAggregateInputType
 }
@@ -139,7 +177,10 @@ export type PeriodoGroupByOutputType = {
   id: string
   nome: string
   descricao: string
+  nota_corte: number
   _count: PeriodoCountAggregateOutputType | null
+  _avg: PeriodoAvgAggregateOutputType | null
+  _sum: PeriodoSumAggregateOutputType | null
   _min: PeriodoMinAggregateOutputType | null
   _max: PeriodoMaxAggregateOutputType | null
 }
@@ -166,6 +207,7 @@ export type PeriodoWhereInput = {
   id?: Prisma.StringFilter<"Periodo"> | string
   nome?: Prisma.StringFilter<"Periodo"> | string
   descricao?: Prisma.StringFilter<"Periodo"> | string
+  nota_corte?: Prisma.FloatFilter<"Periodo"> | number
   turmas?: Prisma.TurmaListRelationFilter
   materias?: Prisma.MateriaListRelationFilter
   etapas?: Prisma.EtapaListRelationFilter
@@ -175,6 +217,7 @@ export type PeriodoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  nota_corte?: Prisma.SortOrder
   turmas?: Prisma.TurmaOrderByRelationAggregateInput
   materias?: Prisma.MateriaOrderByRelationAggregateInput
   etapas?: Prisma.EtapaOrderByRelationAggregateInput
@@ -187,6 +230,7 @@ export type PeriodoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PeriodoWhereInput | Prisma.PeriodoWhereInput[]
   nome?: Prisma.StringFilter<"Periodo"> | string
   descricao?: Prisma.StringFilter<"Periodo"> | string
+  nota_corte?: Prisma.FloatFilter<"Periodo"> | number
   turmas?: Prisma.TurmaListRelationFilter
   materias?: Prisma.MateriaListRelationFilter
   etapas?: Prisma.EtapaListRelationFilter
@@ -196,9 +240,12 @@ export type PeriodoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  nota_corte?: Prisma.SortOrder
   _count?: Prisma.PeriodoCountOrderByAggregateInput
+  _avg?: Prisma.PeriodoAvgOrderByAggregateInput
   _max?: Prisma.PeriodoMaxOrderByAggregateInput
   _min?: Prisma.PeriodoMinOrderByAggregateInput
+  _sum?: Prisma.PeriodoSumOrderByAggregateInput
 }
 
 export type PeriodoScalarWhereWithAggregatesInput = {
@@ -208,12 +255,14 @@ export type PeriodoScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Periodo"> | string
   nome?: Prisma.StringWithAggregatesFilter<"Periodo"> | string
   descricao?: Prisma.StringWithAggregatesFilter<"Periodo"> | string
+  nota_corte?: Prisma.FloatWithAggregatesFilter<"Periodo"> | number
 }
 
 export type PeriodoCreateInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   turmas?: Prisma.TurmaCreateNestedManyWithoutPeriodoInput
   materias?: Prisma.MateriaCreateNestedManyWithoutPeriodoInput
   etapas?: Prisma.EtapaCreateNestedManyWithoutPeriodoInput
@@ -223,6 +272,7 @@ export type PeriodoUncheckedCreateInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   turmas?: Prisma.TurmaUncheckedCreateNestedManyWithoutPeriodoInput
   materias?: Prisma.MateriaUncheckedCreateNestedManyWithoutPeriodoInput
   etapas?: Prisma.EtapaUncheckedCreateNestedManyWithoutPeriodoInput
@@ -232,6 +282,7 @@ export type PeriodoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   turmas?: Prisma.TurmaUpdateManyWithoutPeriodoNestedInput
   materias?: Prisma.MateriaUpdateManyWithoutPeriodoNestedInput
   etapas?: Prisma.EtapaUpdateManyWithoutPeriodoNestedInput
@@ -241,6 +292,7 @@ export type PeriodoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   turmas?: Prisma.TurmaUncheckedUpdateManyWithoutPeriodoNestedInput
   materias?: Prisma.MateriaUncheckedUpdateManyWithoutPeriodoNestedInput
   etapas?: Prisma.EtapaUncheckedUpdateManyWithoutPeriodoNestedInput
@@ -250,41 +302,63 @@ export type PeriodoCreateManyInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
 }
 
 export type PeriodoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type PeriodoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type PeriodoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  nota_corte?: Prisma.SortOrder
+}
+
+export type PeriodoAvgOrderByAggregateInput = {
+  nota_corte?: Prisma.SortOrder
 }
 
 export type PeriodoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  nota_corte?: Prisma.SortOrder
 }
 
 export type PeriodoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
+  nota_corte?: Prisma.SortOrder
+}
+
+export type PeriodoSumOrderByAggregateInput = {
+  nota_corte?: Prisma.SortOrder
 }
 
 export type PeriodoScalarRelationFilter = {
   is?: Prisma.PeriodoWhereInput
   isNot?: Prisma.PeriodoWhereInput
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type PeriodoCreateNestedOneWithoutTurmasInput = {
@@ -333,6 +407,7 @@ export type PeriodoCreateWithoutTurmasInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   materias?: Prisma.MateriaCreateNestedManyWithoutPeriodoInput
   etapas?: Prisma.EtapaCreateNestedManyWithoutPeriodoInput
 }
@@ -341,6 +416,7 @@ export type PeriodoUncheckedCreateWithoutTurmasInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   materias?: Prisma.MateriaUncheckedCreateNestedManyWithoutPeriodoInput
   etapas?: Prisma.EtapaUncheckedCreateNestedManyWithoutPeriodoInput
 }
@@ -365,6 +441,7 @@ export type PeriodoUpdateWithoutTurmasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   materias?: Prisma.MateriaUpdateManyWithoutPeriodoNestedInput
   etapas?: Prisma.EtapaUpdateManyWithoutPeriodoNestedInput
 }
@@ -373,6 +450,7 @@ export type PeriodoUncheckedUpdateWithoutTurmasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   materias?: Prisma.MateriaUncheckedUpdateManyWithoutPeriodoNestedInput
   etapas?: Prisma.EtapaUncheckedUpdateManyWithoutPeriodoNestedInput
 }
@@ -381,6 +459,7 @@ export type PeriodoCreateWithoutMateriasInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   turmas?: Prisma.TurmaCreateNestedManyWithoutPeriodoInput
   etapas?: Prisma.EtapaCreateNestedManyWithoutPeriodoInput
 }
@@ -389,6 +468,7 @@ export type PeriodoUncheckedCreateWithoutMateriasInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   turmas?: Prisma.TurmaUncheckedCreateNestedManyWithoutPeriodoInput
   etapas?: Prisma.EtapaUncheckedCreateNestedManyWithoutPeriodoInput
 }
@@ -413,6 +493,7 @@ export type PeriodoUpdateWithoutMateriasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   turmas?: Prisma.TurmaUpdateManyWithoutPeriodoNestedInput
   etapas?: Prisma.EtapaUpdateManyWithoutPeriodoNestedInput
 }
@@ -421,6 +502,7 @@ export type PeriodoUncheckedUpdateWithoutMateriasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   turmas?: Prisma.TurmaUncheckedUpdateManyWithoutPeriodoNestedInput
   etapas?: Prisma.EtapaUncheckedUpdateManyWithoutPeriodoNestedInput
 }
@@ -429,6 +511,7 @@ export type PeriodoCreateWithoutEtapasInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   turmas?: Prisma.TurmaCreateNestedManyWithoutPeriodoInput
   materias?: Prisma.MateriaCreateNestedManyWithoutPeriodoInput
 }
@@ -437,6 +520,7 @@ export type PeriodoUncheckedCreateWithoutEtapasInput = {
   id?: string
   nome: string
   descricao: string
+  nota_corte: number
   turmas?: Prisma.TurmaUncheckedCreateNestedManyWithoutPeriodoInput
   materias?: Prisma.MateriaUncheckedCreateNestedManyWithoutPeriodoInput
 }
@@ -461,6 +545,7 @@ export type PeriodoUpdateWithoutEtapasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   turmas?: Prisma.TurmaUpdateManyWithoutPeriodoNestedInput
   materias?: Prisma.MateriaUpdateManyWithoutPeriodoNestedInput
 }
@@ -469,6 +554,7 @@ export type PeriodoUncheckedUpdateWithoutEtapasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_corte?: Prisma.FloatFieldUpdateOperationsInput | number
   turmas?: Prisma.TurmaUncheckedUpdateManyWithoutPeriodoNestedInput
   materias?: Prisma.MateriaUncheckedUpdateManyWithoutPeriodoNestedInput
 }
@@ -526,6 +612,7 @@ export type PeriodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   nome?: boolean
   descricao?: boolean
+  nota_corte?: boolean
   turmas?: boolean | Prisma.Periodo$turmasArgs<ExtArgs>
   materias?: boolean | Prisma.Periodo$materiasArgs<ExtArgs>
   etapas?: boolean | Prisma.Periodo$etapasArgs<ExtArgs>
@@ -536,21 +623,24 @@ export type PeriodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   nome?: boolean
   descricao?: boolean
+  nota_corte?: boolean
 }, ExtArgs["result"]["periodo"]>
 
 export type PeriodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
   descricao?: boolean
+  nota_corte?: boolean
 }, ExtArgs["result"]["periodo"]>
 
 export type PeriodoSelectScalar = {
   id?: boolean
   nome?: boolean
   descricao?: boolean
+  nota_corte?: boolean
 }
 
-export type PeriodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "descricao", ExtArgs["result"]["periodo"]>
+export type PeriodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "descricao" | "nota_corte", ExtArgs["result"]["periodo"]>
 export type PeriodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   turmas?: boolean | Prisma.Periodo$turmasArgs<ExtArgs>
   materias?: boolean | Prisma.Periodo$materiasArgs<ExtArgs>
@@ -571,6 +661,7 @@ export type $PeriodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     nome: string
     descricao: string
+    nota_corte: number
   }, ExtArgs["result"]["periodo"]>
   composites: {}
 }
@@ -1000,6 +1091,7 @@ export interface PeriodoFieldRefs {
   readonly id: Prisma.FieldRef<"Periodo", 'String'>
   readonly nome: Prisma.FieldRef<"Periodo", 'String'>
   readonly descricao: Prisma.FieldRef<"Periodo", 'String'>
+  readonly nota_corte: Prisma.FieldRef<"Periodo", 'Float'>
 }
     
 

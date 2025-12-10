@@ -175,7 +175,6 @@ export type MateriaWhereInput = {
   descricao?: Prisma.StringFilter<"Materia"> | string
   id_periodo?: Prisma.StringFilter<"Materia"> | string
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
-  etapas?: Prisma.EtapaListRelationFilter
   professores?: Prisma.ProfessoresMateriaListRelationFilter
 }
 
@@ -185,7 +184,6 @@ export type MateriaOrderByWithRelationInput = {
   descricao?: Prisma.SortOrder
   id_periodo?: Prisma.SortOrder
   periodo?: Prisma.PeriodoOrderByWithRelationInput
-  etapas?: Prisma.EtapaOrderByRelationAggregateInput
   professores?: Prisma.ProfessoresMateriaOrderByRelationAggregateInput
 }
 
@@ -198,7 +196,6 @@ export type MateriaWhereUniqueInput = Prisma.AtLeast<{
   descricao?: Prisma.StringFilter<"Materia"> | string
   id_periodo?: Prisma.StringFilter<"Materia"> | string
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
-  etapas?: Prisma.EtapaListRelationFilter
   professores?: Prisma.ProfessoresMateriaListRelationFilter
 }, "id">
 
@@ -227,7 +224,6 @@ export type MateriaCreateInput = {
   nome: string
   descricao: string
   periodo: Prisma.PeriodoCreateNestedOneWithoutMateriasInput
-  etapas?: Prisma.EtapaCreateNestedManyWithoutMateriaInput
   professores?: Prisma.ProfessoresMateriaCreateNestedManyWithoutMateriaInput
 }
 
@@ -236,7 +232,6 @@ export type MateriaUncheckedCreateInput = {
   nome: string
   descricao: string
   id_periodo: string
-  etapas?: Prisma.EtapaUncheckedCreateNestedManyWithoutMateriaInput
   professores?: Prisma.ProfessoresMateriaUncheckedCreateNestedManyWithoutMateriaInput
 }
 
@@ -245,7 +240,6 @@ export type MateriaUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutMateriasNestedInput
-  etapas?: Prisma.EtapaUpdateManyWithoutMateriaNestedInput
   professores?: Prisma.ProfessoresMateriaUpdateManyWithoutMateriaNestedInput
 }
 
@@ -254,7 +248,6 @@ export type MateriaUncheckedUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  etapas?: Prisma.EtapaUncheckedUpdateManyWithoutMateriaNestedInput
   professores?: Prisma.ProfessoresMateriaUncheckedUpdateManyWithoutMateriaNestedInput
 }
 
@@ -314,11 +307,6 @@ export type MateriaScalarRelationFilter = {
   isNot?: Prisma.MateriaWhereInput
 }
 
-export type MateriaNullableScalarRelationFilter = {
-  is?: Prisma.MateriaWhereInput | null
-  isNot?: Prisma.MateriaWhereInput | null
-}
-
 export type MateriaCreateNestedManyWithoutPeriodoInput = {
   create?: Prisma.XOR<Prisma.MateriaCreateWithoutPeriodoInput, Prisma.MateriaUncheckedCreateWithoutPeriodoInput> | Prisma.MateriaCreateWithoutPeriodoInput[] | Prisma.MateriaUncheckedCreateWithoutPeriodoInput[]
   connectOrCreate?: Prisma.MateriaCreateOrConnectWithoutPeriodoInput | Prisma.MateriaCreateOrConnectWithoutPeriodoInput[]
@@ -375,27 +363,10 @@ export type MateriaUpdateOneRequiredWithoutProfessoresNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MateriaUpdateToOneWithWhereWithoutProfessoresInput, Prisma.MateriaUpdateWithoutProfessoresInput>, Prisma.MateriaUncheckedUpdateWithoutProfessoresInput>
 }
 
-export type MateriaCreateNestedOneWithoutEtapasInput = {
-  create?: Prisma.XOR<Prisma.MateriaCreateWithoutEtapasInput, Prisma.MateriaUncheckedCreateWithoutEtapasInput>
-  connectOrCreate?: Prisma.MateriaCreateOrConnectWithoutEtapasInput
-  connect?: Prisma.MateriaWhereUniqueInput
-}
-
-export type MateriaUpdateOneWithoutEtapasNestedInput = {
-  create?: Prisma.XOR<Prisma.MateriaCreateWithoutEtapasInput, Prisma.MateriaUncheckedCreateWithoutEtapasInput>
-  connectOrCreate?: Prisma.MateriaCreateOrConnectWithoutEtapasInput
-  upsert?: Prisma.MateriaUpsertWithoutEtapasInput
-  disconnect?: Prisma.MateriaWhereInput | boolean
-  delete?: Prisma.MateriaWhereInput | boolean
-  connect?: Prisma.MateriaWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.MateriaUpdateToOneWithWhereWithoutEtapasInput, Prisma.MateriaUpdateWithoutEtapasInput>, Prisma.MateriaUncheckedUpdateWithoutEtapasInput>
-}
-
 export type MateriaCreateWithoutPeriodoInput = {
   id?: string
   nome: string
   descricao: string
-  etapas?: Prisma.EtapaCreateNestedManyWithoutMateriaInput
   professores?: Prisma.ProfessoresMateriaCreateNestedManyWithoutMateriaInput
 }
 
@@ -403,7 +374,6 @@ export type MateriaUncheckedCreateWithoutPeriodoInput = {
   id?: string
   nome: string
   descricao: string
-  etapas?: Prisma.EtapaUncheckedCreateNestedManyWithoutMateriaInput
   professores?: Prisma.ProfessoresMateriaUncheckedCreateNestedManyWithoutMateriaInput
 }
 
@@ -448,7 +418,6 @@ export type MateriaCreateWithoutProfessoresInput = {
   nome: string
   descricao: string
   periodo: Prisma.PeriodoCreateNestedOneWithoutMateriasInput
-  etapas?: Prisma.EtapaCreateNestedManyWithoutMateriaInput
 }
 
 export type MateriaUncheckedCreateWithoutProfessoresInput = {
@@ -456,7 +425,6 @@ export type MateriaUncheckedCreateWithoutProfessoresInput = {
   nome: string
   descricao: string
   id_periodo: string
-  etapas?: Prisma.EtapaUncheckedCreateNestedManyWithoutMateriaInput
 }
 
 export type MateriaCreateOrConnectWithoutProfessoresInput = {
@@ -480,7 +448,6 @@ export type MateriaUpdateWithoutProfessoresInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutMateriasNestedInput
-  etapas?: Prisma.EtapaUpdateManyWithoutMateriaNestedInput
 }
 
 export type MateriaUncheckedUpdateWithoutProfessoresInput = {
@@ -488,55 +455,6 @@ export type MateriaUncheckedUpdateWithoutProfessoresInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  etapas?: Prisma.EtapaUncheckedUpdateManyWithoutMateriaNestedInput
-}
-
-export type MateriaCreateWithoutEtapasInput = {
-  id?: string
-  nome: string
-  descricao: string
-  periodo: Prisma.PeriodoCreateNestedOneWithoutMateriasInput
-  professores?: Prisma.ProfessoresMateriaCreateNestedManyWithoutMateriaInput
-}
-
-export type MateriaUncheckedCreateWithoutEtapasInput = {
-  id?: string
-  nome: string
-  descricao: string
-  id_periodo: string
-  professores?: Prisma.ProfessoresMateriaUncheckedCreateNestedManyWithoutMateriaInput
-}
-
-export type MateriaCreateOrConnectWithoutEtapasInput = {
-  where: Prisma.MateriaWhereUniqueInput
-  create: Prisma.XOR<Prisma.MateriaCreateWithoutEtapasInput, Prisma.MateriaUncheckedCreateWithoutEtapasInput>
-}
-
-export type MateriaUpsertWithoutEtapasInput = {
-  update: Prisma.XOR<Prisma.MateriaUpdateWithoutEtapasInput, Prisma.MateriaUncheckedUpdateWithoutEtapasInput>
-  create: Prisma.XOR<Prisma.MateriaCreateWithoutEtapasInput, Prisma.MateriaUncheckedCreateWithoutEtapasInput>
-  where?: Prisma.MateriaWhereInput
-}
-
-export type MateriaUpdateToOneWithWhereWithoutEtapasInput = {
-  where?: Prisma.MateriaWhereInput
-  data: Prisma.XOR<Prisma.MateriaUpdateWithoutEtapasInput, Prisma.MateriaUncheckedUpdateWithoutEtapasInput>
-}
-
-export type MateriaUpdateWithoutEtapasInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
-  descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  periodo?: Prisma.PeriodoUpdateOneRequiredWithoutMateriasNestedInput
-  professores?: Prisma.ProfessoresMateriaUpdateManyWithoutMateriaNestedInput
-}
-
-export type MateriaUncheckedUpdateWithoutEtapasInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
-  descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  professores?: Prisma.ProfessoresMateriaUncheckedUpdateManyWithoutMateriaNestedInput
 }
 
 export type MateriaCreateManyPeriodoInput = {
@@ -549,7 +467,6 @@ export type MateriaUpdateWithoutPeriodoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  etapas?: Prisma.EtapaUpdateManyWithoutMateriaNestedInput
   professores?: Prisma.ProfessoresMateriaUpdateManyWithoutMateriaNestedInput
 }
 
@@ -557,7 +474,6 @@ export type MateriaUncheckedUpdateWithoutPeriodoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  etapas?: Prisma.EtapaUncheckedUpdateManyWithoutMateriaNestedInput
   professores?: Prisma.ProfessoresMateriaUncheckedUpdateManyWithoutMateriaNestedInput
 }
 
@@ -573,12 +489,10 @@ export type MateriaUncheckedUpdateManyWithoutPeriodoInput = {
  */
 
 export type MateriaCountOutputType = {
-  etapas: number
   professores: number
 }
 
 export type MateriaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  etapas?: boolean | MateriaCountOutputTypeCountEtapasArgs
   professores?: boolean | MateriaCountOutputTypeCountProfessoresArgs
 }
 
@@ -595,13 +509,6 @@ export type MateriaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * MateriaCountOutputType without action
  */
-export type MateriaCountOutputTypeCountEtapasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EtapaWhereInput
-}
-
-/**
- * MateriaCountOutputType without action
- */
 export type MateriaCountOutputTypeCountProfessoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ProfessoresMateriaWhereInput
 }
@@ -613,7 +520,6 @@ export type MateriaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   descricao?: boolean
   id_periodo?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
-  etapas?: boolean | Prisma.Materia$etapasArgs<ExtArgs>
   professores?: boolean | Prisma.Materia$professoresArgs<ExtArgs>
   _count?: boolean | Prisma.MateriaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materia"]>
@@ -644,7 +550,6 @@ export type MateriaSelectScalar = {
 export type MateriaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "descricao" | "id_periodo", ExtArgs["result"]["materia"]>
 export type MateriaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
-  etapas?: boolean | Prisma.Materia$etapasArgs<ExtArgs>
   professores?: boolean | Prisma.Materia$professoresArgs<ExtArgs>
   _count?: boolean | Prisma.MateriaCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -659,7 +564,6 @@ export type $MateriaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Materia"
   objects: {
     periodo: Prisma.$PeriodoPayload<ExtArgs>
-    etapas: Prisma.$EtapaPayload<ExtArgs>[]
     professores: Prisma.$ProfessoresMateriaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1062,7 +966,6 @@ readonly fields: MateriaFieldRefs;
 export interface Prisma__MateriaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   periodo<T extends Prisma.PeriodoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PeriodoDefaultArgs<ExtArgs>>): Prisma.Prisma__PeriodoClient<runtime.Types.Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  etapas<T extends Prisma.Materia$etapasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Materia$etapasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EtapaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   professores<T extends Prisma.Materia$professoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Materia$professoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfessoresMateriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1490,30 +1393,6 @@ export type MateriaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Materias to delete.
    */
   limit?: number
-}
-
-/**
- * Materia.etapas
- */
-export type Materia$etapasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Etapa
-   */
-  select?: Prisma.EtapaSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Etapa
-   */
-  omit?: Prisma.EtapaOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EtapaInclude<ExtArgs> | null
-  where?: Prisma.EtapaWhereInput
-  orderBy?: Prisma.EtapaOrderByWithRelationInput | Prisma.EtapaOrderByWithRelationInput[]
-  cursor?: Prisma.EtapaWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.EtapaScalarFieldEnum | Prisma.EtapaScalarFieldEnum[]
 }
 
 /**

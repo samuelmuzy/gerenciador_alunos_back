@@ -117,7 +117,8 @@ export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof t
 export const PeriodoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
-  descricao: 'descricao'
+  descricao: 'descricao',
+  nota_corte: 'nota_corte'
 } as const
 
 export type PeriodoScalarFieldEnum = (typeof PeriodoScalarFieldEnum)[keyof typeof PeriodoScalarFieldEnum]
@@ -162,9 +163,8 @@ export const EtapaScalarFieldEnum = {
   id: 'id',
   data_inicio: 'data_inicio',
   data_fim: 'data_fim',
-  nota_etapa: 'nota_etapa',
-  id_periodo: 'id_periodo',
-  materiaId: 'materiaId'
+  nota_maxima_etapa: 'nota_maxima_etapa',
+  id_periodo: 'id_periodo'
 } as const
 
 export type EtapaScalarFieldEnum = (typeof EtapaScalarFieldEnum)[keyof typeof EtapaScalarFieldEnum]

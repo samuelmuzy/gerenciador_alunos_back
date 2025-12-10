@@ -27,75 +27,69 @@ export type AggregateEtapa = {
 }
 
 export type EtapaAvgAggregateOutputType = {
-  nota_etapa: number | null
+  nota_maxima_etapa: number | null
 }
 
 export type EtapaSumAggregateOutputType = {
-  nota_etapa: number | null
+  nota_maxima_etapa: number | null
 }
 
 export type EtapaMinAggregateOutputType = {
   id: string | null
   data_inicio: Date | null
   data_fim: Date | null
-  nota_etapa: number | null
+  nota_maxima_etapa: number | null
   id_periodo: string | null
-  materiaId: string | null
 }
 
 export type EtapaMaxAggregateOutputType = {
   id: string | null
   data_inicio: Date | null
   data_fim: Date | null
-  nota_etapa: number | null
+  nota_maxima_etapa: number | null
   id_periodo: string | null
-  materiaId: string | null
 }
 
 export type EtapaCountAggregateOutputType = {
   id: number
   data_inicio: number
   data_fim: number
-  nota_etapa: number
+  nota_maxima_etapa: number
   id_periodo: number
-  materiaId: number
   _all: number
 }
 
 
 export type EtapaAvgAggregateInputType = {
-  nota_etapa?: true
+  nota_maxima_etapa?: true
 }
 
 export type EtapaSumAggregateInputType = {
-  nota_etapa?: true
+  nota_maxima_etapa?: true
 }
 
 export type EtapaMinAggregateInputType = {
   id?: true
   data_inicio?: true
   data_fim?: true
-  nota_etapa?: true
+  nota_maxima_etapa?: true
   id_periodo?: true
-  materiaId?: true
 }
 
 export type EtapaMaxAggregateInputType = {
   id?: true
   data_inicio?: true
   data_fim?: true
-  nota_etapa?: true
+  nota_maxima_etapa?: true
   id_periodo?: true
-  materiaId?: true
 }
 
 export type EtapaCountAggregateInputType = {
   id?: true
   data_inicio?: true
   data_fim?: true
-  nota_etapa?: true
+  nota_maxima_etapa?: true
   id_periodo?: true
-  materiaId?: true
   _all?: true
 }
 
@@ -189,9 +183,8 @@ export type EtapaGroupByOutputType = {
   id: string
   data_inicio: Date
   data_fim: Date
-  nota_etapa: number
+  nota_maxima_etapa: number
   id_periodo: string
-  materiaId: string | null
   _count: EtapaCountAggregateOutputType | null
   _avg: EtapaAvgAggregateOutputType | null
   _sum: EtapaSumAggregateOutputType | null
@@ -221,26 +214,22 @@ export type EtapaWhereInput = {
   id?: Prisma.StringFilter<"Etapa"> | string
   data_inicio?: Prisma.DateTimeFilter<"Etapa"> | Date | string
   data_fim?: Prisma.DateTimeFilter<"Etapa"> | Date | string
-  nota_etapa?: Prisma.FloatFilter<"Etapa"> | number
+  nota_maxima_etapa?: Prisma.FloatFilter<"Etapa"> | number
   id_periodo?: Prisma.StringFilter<"Etapa"> | string
-  materiaId?: Prisma.StringNullableFilter<"Etapa"> | string | null
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
   provas?: Prisma.ProvaListRelationFilter
   trabalhos?: Prisma.TrabalhoListRelationFilter
-  materia?: Prisma.XOR<Prisma.MateriaNullableScalarRelationFilter, Prisma.MateriaWhereInput> | null
 }
 
 export type EtapaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   data_inicio?: Prisma.SortOrder
   data_fim?: Prisma.SortOrder
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
   id_periodo?: Prisma.SortOrder
-  materiaId?: Prisma.SortOrderInput | Prisma.SortOrder
   periodo?: Prisma.PeriodoOrderByWithRelationInput
   provas?: Prisma.ProvaOrderByRelationAggregateInput
   trabalhos?: Prisma.TrabalhoOrderByRelationAggregateInput
-  materia?: Prisma.MateriaOrderByWithRelationInput
 }
 
 export type EtapaWhereUniqueInput = Prisma.AtLeast<{
@@ -250,22 +239,19 @@ export type EtapaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EtapaWhereInput | Prisma.EtapaWhereInput[]
   data_inicio?: Prisma.DateTimeFilter<"Etapa"> | Date | string
   data_fim?: Prisma.DateTimeFilter<"Etapa"> | Date | string
-  nota_etapa?: Prisma.FloatFilter<"Etapa"> | number
+  nota_maxima_etapa?: Prisma.FloatFilter<"Etapa"> | number
   id_periodo?: Prisma.StringFilter<"Etapa"> | string
-  materiaId?: Prisma.StringNullableFilter<"Etapa"> | string | null
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
   provas?: Prisma.ProvaListRelationFilter
   trabalhos?: Prisma.TrabalhoListRelationFilter
-  materia?: Prisma.XOR<Prisma.MateriaNullableScalarRelationFilter, Prisma.MateriaWhereInput> | null
 }, "id">
 
 export type EtapaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   data_inicio?: Prisma.SortOrder
   data_fim?: Prisma.SortOrder
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
   id_periodo?: Prisma.SortOrder
-  materiaId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EtapaCountOrderByAggregateInput
   _avg?: Prisma.EtapaAvgOrderByAggregateInput
   _max?: Prisma.EtapaMaxOrderByAggregateInput
@@ -280,29 +266,26 @@ export type EtapaScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Etapa"> | string
   data_inicio?: Prisma.DateTimeWithAggregatesFilter<"Etapa"> | Date | string
   data_fim?: Prisma.DateTimeWithAggregatesFilter<"Etapa"> | Date | string
-  nota_etapa?: Prisma.FloatWithAggregatesFilter<"Etapa"> | number
+  nota_maxima_etapa?: Prisma.FloatWithAggregatesFilter<"Etapa"> | number
   id_periodo?: Prisma.StringWithAggregatesFilter<"Etapa"> | string
-  materiaId?: Prisma.StringNullableWithAggregatesFilter<"Etapa"> | string | null
 }
 
 export type EtapaCreateInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   periodo: Prisma.PeriodoCreateNestedOneWithoutEtapasInput
   provas?: Prisma.ProvaCreateNestedManyWithoutEtapaInput
   trabalhos?: Prisma.TrabalhoCreateNestedManyWithoutEtapaInput
-  materia?: Prisma.MateriaCreateNestedOneWithoutEtapasInput
 }
 
 export type EtapaUncheckedCreateInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   id_periodo: string
-  materiaId?: string | null
   provas?: Prisma.ProvaUncheckedCreateNestedManyWithoutEtapaInput
   trabalhos?: Prisma.TrabalhoUncheckedCreateNestedManyWithoutEtapaInput
 }
@@ -311,20 +294,18 @@ export type EtapaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutEtapasNestedInput
   provas?: Prisma.ProvaUpdateManyWithoutEtapaNestedInput
   trabalhos?: Prisma.TrabalhoUpdateManyWithoutEtapaNestedInput
-  materia?: Prisma.MateriaUpdateOneWithoutEtapasNestedInput
 }
 
 export type EtapaUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  materiaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   provas?: Prisma.ProvaUncheckedUpdateManyWithoutEtapaNestedInput
   trabalhos?: Prisma.TrabalhoUncheckedUpdateManyWithoutEtapaNestedInput
 }
@@ -333,25 +314,23 @@ export type EtapaCreateManyInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   id_periodo: string
-  materiaId?: string | null
 }
 
 export type EtapaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type EtapaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  materiaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EtapaListRelationFilter = {
@@ -368,35 +347,32 @@ export type EtapaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   data_inicio?: Prisma.SortOrder
   data_fim?: Prisma.SortOrder
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
   id_periodo?: Prisma.SortOrder
-  materiaId?: Prisma.SortOrder
 }
 
 export type EtapaAvgOrderByAggregateInput = {
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
 }
 
 export type EtapaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   data_inicio?: Prisma.SortOrder
   data_fim?: Prisma.SortOrder
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
   id_periodo?: Prisma.SortOrder
-  materiaId?: Prisma.SortOrder
 }
 
 export type EtapaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   data_inicio?: Prisma.SortOrder
   data_fim?: Prisma.SortOrder
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
   id_periodo?: Prisma.SortOrder
-  materiaId?: Prisma.SortOrder
 }
 
 export type EtapaSumOrderByAggregateInput = {
-  nota_etapa?: Prisma.SortOrder
+  nota_maxima_etapa?: Prisma.SortOrder
 }
 
 export type EtapaScalarRelationFilter = {
@@ -446,58 +422,8 @@ export type EtapaUncheckedUpdateManyWithoutPeriodoNestedInput = {
   deleteMany?: Prisma.EtapaScalarWhereInput | Prisma.EtapaScalarWhereInput[]
 }
 
-export type EtapaCreateNestedManyWithoutMateriaInput = {
-  create?: Prisma.XOR<Prisma.EtapaCreateWithoutMateriaInput, Prisma.EtapaUncheckedCreateWithoutMateriaInput> | Prisma.EtapaCreateWithoutMateriaInput[] | Prisma.EtapaUncheckedCreateWithoutMateriaInput[]
-  connectOrCreate?: Prisma.EtapaCreateOrConnectWithoutMateriaInput | Prisma.EtapaCreateOrConnectWithoutMateriaInput[]
-  createMany?: Prisma.EtapaCreateManyMateriaInputEnvelope
-  connect?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-}
-
-export type EtapaUncheckedCreateNestedManyWithoutMateriaInput = {
-  create?: Prisma.XOR<Prisma.EtapaCreateWithoutMateriaInput, Prisma.EtapaUncheckedCreateWithoutMateriaInput> | Prisma.EtapaCreateWithoutMateriaInput[] | Prisma.EtapaUncheckedCreateWithoutMateriaInput[]
-  connectOrCreate?: Prisma.EtapaCreateOrConnectWithoutMateriaInput | Prisma.EtapaCreateOrConnectWithoutMateriaInput[]
-  createMany?: Prisma.EtapaCreateManyMateriaInputEnvelope
-  connect?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-}
-
-export type EtapaUpdateManyWithoutMateriaNestedInput = {
-  create?: Prisma.XOR<Prisma.EtapaCreateWithoutMateriaInput, Prisma.EtapaUncheckedCreateWithoutMateriaInput> | Prisma.EtapaCreateWithoutMateriaInput[] | Prisma.EtapaUncheckedCreateWithoutMateriaInput[]
-  connectOrCreate?: Prisma.EtapaCreateOrConnectWithoutMateriaInput | Prisma.EtapaCreateOrConnectWithoutMateriaInput[]
-  upsert?: Prisma.EtapaUpsertWithWhereUniqueWithoutMateriaInput | Prisma.EtapaUpsertWithWhereUniqueWithoutMateriaInput[]
-  createMany?: Prisma.EtapaCreateManyMateriaInputEnvelope
-  set?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  disconnect?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  delete?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  connect?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  update?: Prisma.EtapaUpdateWithWhereUniqueWithoutMateriaInput | Prisma.EtapaUpdateWithWhereUniqueWithoutMateriaInput[]
-  updateMany?: Prisma.EtapaUpdateManyWithWhereWithoutMateriaInput | Prisma.EtapaUpdateManyWithWhereWithoutMateriaInput[]
-  deleteMany?: Prisma.EtapaScalarWhereInput | Prisma.EtapaScalarWhereInput[]
-}
-
-export type EtapaUncheckedUpdateManyWithoutMateriaNestedInput = {
-  create?: Prisma.XOR<Prisma.EtapaCreateWithoutMateriaInput, Prisma.EtapaUncheckedCreateWithoutMateriaInput> | Prisma.EtapaCreateWithoutMateriaInput[] | Prisma.EtapaUncheckedCreateWithoutMateriaInput[]
-  connectOrCreate?: Prisma.EtapaCreateOrConnectWithoutMateriaInput | Prisma.EtapaCreateOrConnectWithoutMateriaInput[]
-  upsert?: Prisma.EtapaUpsertWithWhereUniqueWithoutMateriaInput | Prisma.EtapaUpsertWithWhereUniqueWithoutMateriaInput[]
-  createMany?: Prisma.EtapaCreateManyMateriaInputEnvelope
-  set?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  disconnect?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  delete?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  connect?: Prisma.EtapaWhereUniqueInput | Prisma.EtapaWhereUniqueInput[]
-  update?: Prisma.EtapaUpdateWithWhereUniqueWithoutMateriaInput | Prisma.EtapaUpdateWithWhereUniqueWithoutMateriaInput[]
-  updateMany?: Prisma.EtapaUpdateManyWithWhereWithoutMateriaInput | Prisma.EtapaUpdateManyWithWhereWithoutMateriaInput[]
-  deleteMany?: Prisma.EtapaScalarWhereInput | Prisma.EtapaScalarWhereInput[]
-}
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type EtapaCreateNestedOneWithoutProvasInput = {
@@ -532,18 +458,16 @@ export type EtapaCreateWithoutPeriodoInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   provas?: Prisma.ProvaCreateNestedManyWithoutEtapaInput
   trabalhos?: Prisma.TrabalhoCreateNestedManyWithoutEtapaInput
-  materia?: Prisma.MateriaCreateNestedOneWithoutEtapasInput
 }
 
 export type EtapaUncheckedCreateWithoutPeriodoInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
-  materiaId?: string | null
+  nota_maxima_etapa: number
   provas?: Prisma.ProvaUncheckedCreateNestedManyWithoutEtapaInput
   trabalhos?: Prisma.TrabalhoUncheckedCreateNestedManyWithoutEtapaInput
 }
@@ -581,74 +505,25 @@ export type EtapaScalarWhereInput = {
   id?: Prisma.StringFilter<"Etapa"> | string
   data_inicio?: Prisma.DateTimeFilter<"Etapa"> | Date | string
   data_fim?: Prisma.DateTimeFilter<"Etapa"> | Date | string
-  nota_etapa?: Prisma.FloatFilter<"Etapa"> | number
+  nota_maxima_etapa?: Prisma.FloatFilter<"Etapa"> | number
   id_periodo?: Prisma.StringFilter<"Etapa"> | string
-  materiaId?: Prisma.StringNullableFilter<"Etapa"> | string | null
-}
-
-export type EtapaCreateWithoutMateriaInput = {
-  id?: string
-  data_inicio: Date | string
-  data_fim: Date | string
-  nota_etapa: number
-  periodo: Prisma.PeriodoCreateNestedOneWithoutEtapasInput
-  provas?: Prisma.ProvaCreateNestedManyWithoutEtapaInput
-  trabalhos?: Prisma.TrabalhoCreateNestedManyWithoutEtapaInput
-}
-
-export type EtapaUncheckedCreateWithoutMateriaInput = {
-  id?: string
-  data_inicio: Date | string
-  data_fim: Date | string
-  nota_etapa: number
-  id_periodo: string
-  provas?: Prisma.ProvaUncheckedCreateNestedManyWithoutEtapaInput
-  trabalhos?: Prisma.TrabalhoUncheckedCreateNestedManyWithoutEtapaInput
-}
-
-export type EtapaCreateOrConnectWithoutMateriaInput = {
-  where: Prisma.EtapaWhereUniqueInput
-  create: Prisma.XOR<Prisma.EtapaCreateWithoutMateriaInput, Prisma.EtapaUncheckedCreateWithoutMateriaInput>
-}
-
-export type EtapaCreateManyMateriaInputEnvelope = {
-  data: Prisma.EtapaCreateManyMateriaInput | Prisma.EtapaCreateManyMateriaInput[]
-  skipDuplicates?: boolean
-}
-
-export type EtapaUpsertWithWhereUniqueWithoutMateriaInput = {
-  where: Prisma.EtapaWhereUniqueInput
-  update: Prisma.XOR<Prisma.EtapaUpdateWithoutMateriaInput, Prisma.EtapaUncheckedUpdateWithoutMateriaInput>
-  create: Prisma.XOR<Prisma.EtapaCreateWithoutMateriaInput, Prisma.EtapaUncheckedCreateWithoutMateriaInput>
-}
-
-export type EtapaUpdateWithWhereUniqueWithoutMateriaInput = {
-  where: Prisma.EtapaWhereUniqueInput
-  data: Prisma.XOR<Prisma.EtapaUpdateWithoutMateriaInput, Prisma.EtapaUncheckedUpdateWithoutMateriaInput>
-}
-
-export type EtapaUpdateManyWithWhereWithoutMateriaInput = {
-  where: Prisma.EtapaScalarWhereInput
-  data: Prisma.XOR<Prisma.EtapaUpdateManyMutationInput, Prisma.EtapaUncheckedUpdateManyWithoutMateriaInput>
 }
 
 export type EtapaCreateWithoutProvasInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   periodo: Prisma.PeriodoCreateNestedOneWithoutEtapasInput
   trabalhos?: Prisma.TrabalhoCreateNestedManyWithoutEtapaInput
-  materia?: Prisma.MateriaCreateNestedOneWithoutEtapasInput
 }
 
 export type EtapaUncheckedCreateWithoutProvasInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   id_periodo: string
-  materiaId?: string | null
   trabalhos?: Prisma.TrabalhoUncheckedCreateNestedManyWithoutEtapaInput
 }
 
@@ -672,19 +547,17 @@ export type EtapaUpdateWithoutProvasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutEtapasNestedInput
   trabalhos?: Prisma.TrabalhoUpdateManyWithoutEtapaNestedInput
-  materia?: Prisma.MateriaUpdateOneWithoutEtapasNestedInput
 }
 
 export type EtapaUncheckedUpdateWithoutProvasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  materiaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trabalhos?: Prisma.TrabalhoUncheckedUpdateManyWithoutEtapaNestedInput
 }
 
@@ -692,19 +565,17 @@ export type EtapaCreateWithoutTrabalhosInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   periodo: Prisma.PeriodoCreateNestedOneWithoutEtapasInput
   provas?: Prisma.ProvaCreateNestedManyWithoutEtapaInput
-  materia?: Prisma.MateriaCreateNestedOneWithoutEtapasInput
 }
 
 export type EtapaUncheckedCreateWithoutTrabalhosInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
+  nota_maxima_etapa: number
   id_periodo: string
-  materiaId?: string | null
   provas?: Prisma.ProvaUncheckedCreateNestedManyWithoutEtapaInput
 }
 
@@ -728,19 +599,17 @@ export type EtapaUpdateWithoutTrabalhosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutEtapasNestedInput
   provas?: Prisma.ProvaUpdateManyWithoutEtapaNestedInput
-  materia?: Prisma.MateriaUpdateOneWithoutEtapasNestedInput
 }
 
 export type EtapaUncheckedUpdateWithoutTrabalhosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  materiaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   provas?: Prisma.ProvaUncheckedUpdateManyWithoutEtapaNestedInput
 }
 
@@ -748,26 +617,23 @@ export type EtapaCreateManyPeriodoInput = {
   id?: string
   data_inicio: Date | string
   data_fim: Date | string
-  nota_etapa: number
-  materiaId?: string | null
+  nota_maxima_etapa: number
 }
 
 export type EtapaUpdateWithoutPeriodoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   provas?: Prisma.ProvaUpdateManyWithoutEtapaNestedInput
   trabalhos?: Prisma.TrabalhoUpdateManyWithoutEtapaNestedInput
-  materia?: Prisma.MateriaUpdateOneWithoutEtapasNestedInput
 }
 
 export type EtapaUncheckedUpdateWithoutPeriodoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
-  materiaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
   provas?: Prisma.ProvaUncheckedUpdateManyWithoutEtapaNestedInput
   trabalhos?: Prisma.TrabalhoUncheckedUpdateManyWithoutEtapaNestedInput
 }
@@ -776,44 +642,7 @@ export type EtapaUncheckedUpdateManyWithoutPeriodoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
-  materiaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type EtapaCreateManyMateriaInput = {
-  id?: string
-  data_inicio: Date | string
-  data_fim: Date | string
-  nota_etapa: number
-  id_periodo: string
-}
-
-export type EtapaUpdateWithoutMateriaInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
-  periodo?: Prisma.PeriodoUpdateOneRequiredWithoutEtapasNestedInput
-  provas?: Prisma.ProvaUpdateManyWithoutEtapaNestedInput
-  trabalhos?: Prisma.TrabalhoUpdateManyWithoutEtapaNestedInput
-}
-
-export type EtapaUncheckedUpdateWithoutMateriaInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
-  id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
-  provas?: Prisma.ProvaUncheckedUpdateManyWithoutEtapaNestedInput
-  trabalhos?: Prisma.TrabalhoUncheckedUpdateManyWithoutEtapaNestedInput
-}
-
-export type EtapaUncheckedUpdateManyWithoutMateriaInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  data_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  data_fim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  nota_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
-  id_periodo?: Prisma.StringFieldUpdateOperationsInput | string
+  nota_maxima_etapa?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 
@@ -860,13 +689,11 @@ export type EtapaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   id?: boolean
   data_inicio?: boolean
   data_fim?: boolean
-  nota_etapa?: boolean
+  nota_maxima_etapa?: boolean
   id_periodo?: boolean
-  materiaId?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
   provas?: boolean | Prisma.Etapa$provasArgs<ExtArgs>
   trabalhos?: boolean | Prisma.Etapa$trabalhosArgs<ExtArgs>
-  materia?: boolean | Prisma.Etapa$materiaArgs<ExtArgs>
   _count?: boolean | Prisma.EtapaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["etapa"]>
 
@@ -874,48 +701,40 @@ export type EtapaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   data_inicio?: boolean
   data_fim?: boolean
-  nota_etapa?: boolean
+  nota_maxima_etapa?: boolean
   id_periodo?: boolean
-  materiaId?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
-  materia?: boolean | Prisma.Etapa$materiaArgs<ExtArgs>
 }, ExtArgs["result"]["etapa"]>
 
 export type EtapaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   data_inicio?: boolean
   data_fim?: boolean
-  nota_etapa?: boolean
+  nota_maxima_etapa?: boolean
   id_periodo?: boolean
-  materiaId?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
-  materia?: boolean | Prisma.Etapa$materiaArgs<ExtArgs>
 }, ExtArgs["result"]["etapa"]>
 
 export type EtapaSelectScalar = {
   id?: boolean
   data_inicio?: boolean
   data_fim?: boolean
-  nota_etapa?: boolean
+  nota_maxima_etapa?: boolean
   id_periodo?: boolean
-  materiaId?: boolean
 }
 
-export type EtapaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data_inicio" | "data_fim" | "nota_etapa" | "id_periodo" | "materiaId", ExtArgs["result"]["etapa"]>
+export type EtapaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data_inicio" | "data_fim" | "nota_maxima_etapa" | "id_periodo", ExtArgs["result"]["etapa"]>
 export type EtapaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
   provas?: boolean | Prisma.Etapa$provasArgs<ExtArgs>
   trabalhos?: boolean | Prisma.Etapa$trabalhosArgs<ExtArgs>
-  materia?: boolean | Prisma.Etapa$materiaArgs<ExtArgs>
   _count?: boolean | Prisma.EtapaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EtapaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
-  materia?: boolean | Prisma.Etapa$materiaArgs<ExtArgs>
 }
 export type EtapaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
-  materia?: boolean | Prisma.Etapa$materiaArgs<ExtArgs>
 }
 
 export type $EtapaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -924,15 +743,13 @@ export type $EtapaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     periodo: Prisma.$PeriodoPayload<ExtArgs>
     provas: Prisma.$ProvaPayload<ExtArgs>[]
     trabalhos: Prisma.$TrabalhoPayload<ExtArgs>[]
-    materia: Prisma.$MateriaPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     data_inicio: Date
     data_fim: Date
-    nota_etapa: number
+    nota_maxima_etapa: number
     id_periodo: string
-    materiaId: string | null
   }, ExtArgs["result"]["etapa"]>
   composites: {}
 }
@@ -1330,7 +1147,6 @@ export interface Prisma__EtapaClient<T, Null = never, ExtArgs extends runtime.Ty
   periodo<T extends Prisma.PeriodoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PeriodoDefaultArgs<ExtArgs>>): Prisma.Prisma__PeriodoClient<runtime.Types.Result.GetResult<Prisma.$PeriodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   provas<T extends Prisma.Etapa$provasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Etapa$provasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProvaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trabalhos<T extends Prisma.Etapa$trabalhosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Etapa$trabalhosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrabalhoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  materia<T extends Prisma.Etapa$materiaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Etapa$materiaArgs<ExtArgs>>): Prisma.Prisma__MateriaClient<runtime.Types.Result.GetResult<Prisma.$MateriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1363,9 +1179,8 @@ export interface EtapaFieldRefs {
   readonly id: Prisma.FieldRef<"Etapa", 'String'>
   readonly data_inicio: Prisma.FieldRef<"Etapa", 'DateTime'>
   readonly data_fim: Prisma.FieldRef<"Etapa", 'DateTime'>
-  readonly nota_etapa: Prisma.FieldRef<"Etapa", 'Float'>
+  readonly nota_maxima_etapa: Prisma.FieldRef<"Etapa", 'Float'>
   readonly id_periodo: Prisma.FieldRef<"Etapa", 'String'>
-  readonly materiaId: Prisma.FieldRef<"Etapa", 'String'>
 }
     
 
@@ -1807,25 +1622,6 @@ export type Etapa$trabalhosArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.TrabalhoScalarFieldEnum | Prisma.TrabalhoScalarFieldEnum[]
-}
-
-/**
- * Etapa.materia
- */
-export type Etapa$materiaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Materia
-   */
-  select?: Prisma.MateriaSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Materia
-   */
-  omit?: Prisma.MateriaOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MateriaInclude<ExtArgs> | null
-  where?: Prisma.MateriaWhereInput
 }
 
 /**
