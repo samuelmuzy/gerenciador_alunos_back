@@ -5,23 +5,23 @@ import { Public } from './decorators/SkipAuth.decorator';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authService:AuthService){}
+  constructor(private authService: AuthService) {}
 
-    @Public()
-    @Post('signup')
-    async singUp(@Body() body:SingUpDTO){
-        return this.authService.singUp(body);
-    }
-    
-    @Public()
-    @Post('singin')
-    async singIn(@Body() body:SingInDTO){
-        return this.authService.singIn(body);
-    }
+  @Public()
+  @Post('signup')
+  async singUp(@Body() body: SingUpDTO) {
+    return this.authService.singUp(body);
+  }
 
-    @Public()
-    @Post('singin-professor')
-    async singInProfessor(@Body() body:SingInDTO){
-        return this.authService.singInProfessor(body)
-    }
+  @Public()
+  @Post('singin')
+  async singIn(@Body() body: SingInDTO) {
+    return this.authService.singIn(body);
+  }
+
+  @Public()
+  @Post('singin-professor')
+  async singInProfessor(@Body() body: SingInDTO) {
+    return this.authService.singInProfessor(body);
+  }
 }

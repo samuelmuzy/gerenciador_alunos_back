@@ -1,11 +1,9 @@
-import { IsNotEmpty } from "class-validator"
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateStudentClassDto {
-   
   @IsNotEmpty()
-  nome: string
+  nome: string;
 
   @IsNotEmpty()
-  id_periodo:string
-  
+  id_periodo: string;
 }

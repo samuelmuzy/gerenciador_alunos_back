@@ -7,11 +7,13 @@ import { ProofService } from './proof.service';
 
 @Controller('proof')
 export class ProofController {
-    constructor(private proofService:ProofService){}
+  constructor(private proofService: ProofService) {}
 
-    @Roles(Role.TEACHER)
-    @Post('')
-    public async createProof(@Body() body:CreateProofDto):Promise<CreateProofDto>{
-        return await this.proofService.createProof(body);
-    }
+  @Roles(Role.TEACHER)
+  @Post('')
+  public async createProof(
+    @Body() body: CreateProofDto,
+  ): Promise<CreateProofDto> {
+    return await this.proofService.createProof(body);
+  }
 }

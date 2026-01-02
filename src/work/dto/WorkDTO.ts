@@ -1,26 +1,25 @@
-import { IsDate, IsNegative, IsNotEmpty, IsNumber } from "class-validator"
+import { IsDate, IsNegative, IsNotEmpty, IsNumber } from 'class-validator';
 
-export class CreateWork{
-    @IsNotEmpty()
-    nome:string
+export class CreateWork {
+  @IsNotEmpty()
+  nome: string;
 
-    @IsNotEmpty()
-    tipo:string
-    
-    @IsNotEmpty()
-    @IsNumber()
-    @IsNegative()
-    valor:number
+  @IsNotEmpty()
+  tipo: string;
 
-    @IsNotEmpty()
-    @IsDate()
-    data_inicio:Date
-    
-    @IsNotEmpty()
-    @IsDate()
-    data_fim:Date
+  @IsNotEmpty()
+  @IsNumber()
+  @IsNegative()
+  valor: number;
 
-    @IsNotEmpty()
-    id_etapa:string
+  @IsNotEmpty()
+  @IsDate()
+  data_inicio: Date;
 
+  @IsNotEmpty()
+  @IsDate()
+  data_fim: Date;
+
+  @IsNotEmpty()
+  id_etapa: string;
 }

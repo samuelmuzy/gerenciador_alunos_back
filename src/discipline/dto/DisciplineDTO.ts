@@ -1,13 +1,12 @@
-import { IsNotEmpty } from "class-validator"
+import { IsNotEmpty } from 'class-validator';
 
-export class createDisciplineDto{
-    @IsNotEmpty()
-    nome:string
+export class createDisciplineDto {
+  @IsNotEmpty()
+  nome: string;
 
-    @IsNotEmpty()
-    descricao:string
+  @IsNotEmpty()
+  descricao: string;
 
-    @IsNotEmpty()
-    id_periodo:string
-    
+  @IsNotEmpty()
+  id_periodo: string;
 }

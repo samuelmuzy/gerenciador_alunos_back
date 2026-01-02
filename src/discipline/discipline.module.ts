@@ -6,15 +6,17 @@ import { RolesGuard } from 'src/auth/guards/Roles.guard';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Module({
-  providers: [DisciplineService,
+  providers: [
+    DisciplineService,
     {
       provide: APP_GUARD,
-      useClass: AuthGuard  ,
+      useClass: AuthGuard,
     },
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    },],
-  controllers: [DisciplineController]
+    },
+  ],
+  controllers: [DisciplineController],
 })
 export class DisciplineModule {}

@@ -8,7 +8,8 @@ import { RolesGuard } from 'src/auth/guards/Roles.guard';
 
 @Module({
   imports: [PrismaModule],
-  providers: [WorkService,
+  providers: [
+    WorkService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
@@ -16,7 +17,8 @@ import { RolesGuard } from 'src/auth/guards/Roles.guard';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    },],
+    },
+  ],
   controllers: [WorkController],
 })
 export class WorkModule {}

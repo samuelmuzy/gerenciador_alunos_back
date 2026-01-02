@@ -13,7 +13,7 @@ import { DisciplineModule } from './discipline/discipline.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true}),
+    ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     ProfessorModule,
     WorkModule,
@@ -21,9 +21,9 @@ import { DisciplineModule } from './discipline/discipline.module';
     PeriodusModule,
     StudentClassModule,
     ProofModule,
-    DisciplineModule
+    DisciplineModule,
   ],
   controllers: [],
   providers: [WorkService, PeriodusService],
 })
-export class AppModule { }
+export class AppModule {}

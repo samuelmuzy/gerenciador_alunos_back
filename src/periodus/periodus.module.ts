@@ -7,7 +7,8 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Module({
   controllers: [PeriodusController],
-  providers:[PeriodusService,
+  providers: [
+    PeriodusService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
@@ -15,6 +16,7 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    },]
+    },
+  ],
 })
 export class PeriodusModule {}

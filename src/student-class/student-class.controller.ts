@@ -6,13 +6,13 @@ import { StudentClassService } from './student-class.service';
 
 @Controller('student-class')
 export class StudentClassController {
-    constructor(private studentClassService:StudentClassService){}
+  constructor(private studentClassService: StudentClassService) {}
 
-    @Roles(Role.TEACHER)
-    @Post('')
-    public async createStudentClass(@Body() body:CreateStudentClassDto):Promise<CreateStudentClassDto>{
-        return await  this.studentClassService.createStudentClass(body)  
-    }
-
-    
+  @Roles(Role.TEACHER)
+  @Post('')
+  public async createStudentClass(
+    @Body() body: CreateStudentClassDto,
+  ): Promise<CreateStudentClassDto> {
+    return await this.studentClassService.createStudentClass(body);
+  }
 }

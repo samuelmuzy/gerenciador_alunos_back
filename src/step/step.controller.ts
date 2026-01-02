@@ -6,10 +6,10 @@ import { StepService } from './step.service';
 
 @Controller('step')
 export class StepController {
-    constructor(private stepService:StepService){}
+  constructor(private stepService: StepService) {}
 
-    @Roles(Role.TEACHER)
-    public async createStep(@Body() body:CreateStepDto):Promise<CreateStepDto>{
-        return await this.stepService.createStep(body);
-    }
+  @Roles(Role.TEACHER)
+  public async createStep(@Body() body: CreateStepDto): Promise<CreateStepDto> {
+    return await this.stepService.createStep(body);
+  }
 }

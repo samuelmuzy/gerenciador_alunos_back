@@ -6,12 +6,13 @@ import { DisciplineService } from './discipline.service';
 
 @Controller('discipline')
 export class DisciplineController {
-    constructor(private disciplineService:DisciplineService){}
-    
-    @Roles(Role.ADMIN)
-    @Post('')
-    public async createProof(@Body() body:createDisciplineDto):Promise<createDisciplineDto>{
-        return await this.disciplineService.createProof(body);
-    }
+  constructor(private disciplineService: DisciplineService) {}
 
+  @Roles(Role.ADMIN)
+  @Post('')
+  public async createProof(
+    @Body() body: createDisciplineDto,
+  ): Promise<createDisciplineDto> {
+    return await this.disciplineService.createProof(body);
+  }
 }

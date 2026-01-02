@@ -6,11 +6,11 @@ import { WorkService } from './work.service';
 
 @Controller('work')
 export class WorkController {
-    constructor(private workService:WorkService){}
+  constructor(private workService: WorkService) {}
 
-    @Roles(Role.TEACHER)
-    @Post('')
-    public async createWork(@Body() body:CreateWork):Promise<CreateWork>{
-        return await this.workService.createWork(body)
-    }
+  @Roles(Role.TEACHER)
+  @Post('')
+  public async createWork(@Body() body: CreateWork): Promise<CreateWork> {
+    return await this.workService.createWork(body);
+  }
 }

@@ -6,11 +6,13 @@ import { CreatePeriodus } from './dto/PeriodusDTO';
 
 @Controller('periodus')
 export class PeriodusController {
-    constructor(private periodusService:PeriodusService){}
+  constructor(private periodusService: PeriodusService) {}
 
-    @Roles(Role.TEACHER)
-    @Post('')
-    public async createPeriodus(@Body() body:CreatePeriodus):Promise<CreatePeriodus>{
-        return await this.periodusService.createPeriodus(body);
-    }
+  @Roles(Role.TEACHER)
+  @Post('')
+  public async createPeriodus(
+    @Body() body: CreatePeriodus,
+  ): Promise<CreatePeriodus> {
+    return await this.periodusService.createPeriodus(body);
+  }
 }

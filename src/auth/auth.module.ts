@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
@@ -10,9 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ConfigModule } from '@nestjs/config';
 import { RolesGuard } from './guards/Roles.guard';
 
-
 @Module({
-  
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     JwtModule.register({
@@ -20,9 +17,11 @@ import { RolesGuard } from './guards/Roles.guard';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
-    PrismaModule],
+    PrismaModule,
+  ],
   controllers: [AuthController],
-  providers: [AuthService,
+  providers: [
+    AuthService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
@@ -30,8 +29,7 @@ import { RolesGuard } from './guards/Roles.guard';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    }
+    },
   ],
-
 })
-export class AuthModule { }
+export class AuthModule {}

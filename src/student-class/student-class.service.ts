@@ -4,11 +4,12 @@ import { CreateStudentClassDto } from './dto/strudent-classDTO';
 
 @Injectable()
 export class StudentClassService {
-    constructor(private prismaService: PrismaService) { }
+  constructor(private prismaService: PrismaService) {}
 
-    public async createStudentClass(data: CreateStudentClassDto): Promise<CreateStudentClassDto> {
-    
-        const newPeriodus = await this.prismaService.turma.create({ data });
-        return newPeriodus;
-    }
+  public async createStudentClass(
+    data: CreateStudentClassDto,
+  ): Promise<CreateStudentClassDto> {
+    const newPeriodus = await this.prismaService.turma.create({ data });
+    return newPeriodus;
+  }
 }

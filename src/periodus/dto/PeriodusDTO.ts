@@ -1,13 +1,13 @@
-import { IsNotEmpty, IsNumber } from "class-validator"
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
-export class CreatePeriodus{
-    @IsNotEmpty()
-    nome:string
+export class CreatePeriodus {
+  @IsNotEmpty()
+  nome: string;
 
-    @IsNotEmpty()
-    descricao:string
+  @IsNotEmpty()
+  descricao: string;
 
-    @IsNotEmpty()
-    @IsNumber()
-    nota_corte:number
+  @IsNotEmpty()
+  @IsNumber()
+  nota_corte: number;
 }

@@ -6,7 +6,8 @@ import { RolesGuard } from 'src/auth/guards/Roles.guard';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Module({
-  providers: [ProofService,
+  providers: [
+    ProofService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
@@ -14,7 +15,8 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    },],
-  controllers: [ProofController]
+    },
+  ],
+  controllers: [ProofController],
 })
 export class ProofModule {}
