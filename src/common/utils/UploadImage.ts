@@ -20,7 +20,7 @@ export const uploadImagemBuffer = (
       { folder },
       (error, result) => {
         if (error) {
-          return reject(error);
+          return reject(new Error(error.message));
         }
         if (result?.secure_url) {
           return resolve({
@@ -28,7 +28,7 @@ export const uploadImagemBuffer = (
             publicId: result.public_id,
           });
         }
-        reject(new Error('Erro inesperado ao enviar imagem'));
+        return reject(new Error('Erro inesperado ao enviar imagem'));
       },
     );
 
